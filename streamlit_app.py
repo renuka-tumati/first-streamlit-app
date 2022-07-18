@@ -1,1 +1,2 @@
-Created the main python file streamlit_app.py
+import streamlit
+streamlit.tittle('My Parents New Helathy Diner')

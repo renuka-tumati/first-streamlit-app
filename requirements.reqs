@@ -1,7 +1,7 @@
 # requirements.reqs
 asn1crypto==1.5.1
 certifi==2022.6.15
-cffi==1.15.0
+cffi==1.15.1
 charset-normalizer==2.0.12
 cryptography==36.0.2
 idna==3.3

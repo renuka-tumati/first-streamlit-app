@@ -43,23 +43,17 @@ from snowflake.sqlalchemy import URL
 from sqlalchemy.orm import sessionmaker
 
 # # create connection object wih the
-# # Bridg provided snowflake connection details provided
-sf_engine = create_engine(URL(
-         account='xxxx',
-         user='xxx',
-         password='xxxx',
-         database='xxx',
-         schema='xxx',
-         warehouse='xxx',
-         role='xxx',
-))
-Session = sessionmaker(bind=sf_engine, autocommit=False)
-session = Session()
-results = session.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
-streamlit.text(results)
+# # Bridge provided snowflake connection details provided
 
 
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cnx = snowflake.connector.connect(
+                  user = "renukatumati"
+                  password = "Srenu@123"
+                  account = "lw10746.ca-central-1.aws "
+                  warehouse = "compute_wh"
+                  database = "pc_rivery_db" 
+                  schema = "public")
+#my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 my_data_row = my_cur.fetchone()

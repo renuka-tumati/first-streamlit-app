@@ -38,6 +38,25 @@ fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 streamlit.dataframe(fruityvice_normalized)
 
 
+from sqlalchemy import create_engine
+from snowflake.sqlalchemy import URL
+from sqlalchemy.orm import sessionmaker
+
+# # create connection object wih the
+# # Bridg provided snowflake connection details provided
+sf_engine = create_engine(URL(
+         account='xxxx',
+         user='xxx',
+         password='xxxx',
+         database='xxx',
+         schema='xxx',
+         warehouse='xxx',
+         role='xxx',
+))
+Session = sessionmaker(bind=sf_engine, autocommit=False)
+session = Session()
+results = session.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+streamlit.text(results)
 
 
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
